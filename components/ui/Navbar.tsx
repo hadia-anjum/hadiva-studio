@@ -9,15 +9,7 @@ const navLinks = [
   { label: 'FAQ', href: '#faq' },
 ];
 
-import { countries } from '@/lib/countries';
-
-interface NavbarProps {
-  country: string;
-  onChangeCountry: (code: string) => void;
-  userName?: string;
-}
-
-export default function Navbar({ country, onChangeCountry, userName }: NavbarProps) {
+export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -34,13 +26,11 @@ export default function Navbar({ country, onChangeCountry, userName }: NavbarPro
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScroll]);
 
-  const selectedCountryData = countries.find(c => c.code === country) || countries[0];
-
   return (
     <motion.header
       animate={{ y: hidden && !menuOpen ? -100 : 0 }}
       transition={{ duration: 0.4, ease: 'easeInOut' }}
-      className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4"
+      className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4 font-jost"
     >
       <motion.nav
         initial={{ opacity: 0, y: -20 }}
@@ -77,49 +67,18 @@ export default function Navbar({ country, onChangeCountry, userName }: NavbarPro
             ))}
           </div>
 
-          {/* CTA & Selector */}
+          {/* CTA */}
           <div className="hidden md:flex items-center gap-4">
-            {/* Elegant flag country dropdown selector */}
-            <div className="relative group font-jost text-xs">
-              <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-mocha/10 bg-cream/70 text-mocha hover:border-gold-dk hover:text-gold-dk transition-all focus:outline-none shadow-sm">
-                <span>{selectedCountryData.flag}</span>
-                <span className="font-medium">{selectedCountryData.currency}</span>
-                <span className="text-[8px] text-taupe-lt transition-transform duration-300 group-hover:rotate-180">▼</span>
-              </button>
-              <div className="absolute right-0 top-full mt-2 w-48 bg-cream border border-mocha/5 rounded-2xl shadow-gold-sm opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 overflow-hidden py-1.5 z-30">
-                {countries.map(c => (
-                  <button
-                    key={c.code}
-                    onClick={() => onChangeCountry(c.code)}
-                    className={`w-full flex items-center justify-between px-4 py-2 hover:bg-gold/10 text-left text-xs transition-colors ${
-                      country === c.code ? 'text-gold-dk font-semibold bg-gold/5' : 'text-mocha'
-                    }`}
-                  >
-                    <span>{c.flag} {c.name}</span>
-                    <span className="text-[10px] text-taupe">{c.currency}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {userName && userName !== 'Guest' && (
-              <span className="text-xs text-mocha font-light tracking-wide italic mr-1">
-                Hi, {userName} 🌸
-              </span>
-            )}
-
             <a
               href="#contact"
-              className="px-5 py-1.5 rounded-full border border-gold/60 text-gold-dk text-xs tracking-wider uppercase font-jost font-medium hover:bg-gold hover:text-white transition-all duration-300"
+              className="px-5 py-1.5 rounded-full border border-gold/60 text-gold-dk text-xs tracking-wider uppercase font-medium hover:bg-gold hover:text-white transition-all duration-300"
             >
               Start Project
             </a>
           </div>
 
           {/* Mobile burger */}
-          <div className="md:hidden flex items-center gap-3">
-            {/* Quick flag indicator */}
-            <span className="text-sm select-none">{selectedCountryData.flag}</span>
+          <div className="md:hidden flex items-center">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               className="flex flex-col gap-1.5 p-2 text-mocha focus:outline-none"
@@ -149,36 +108,6 @@ export default function Navbar({ country, onChangeCountry, userName }: NavbarPro
                     {link.label}
                   </a>
                 ))}
-
-                {/* Mobile Flag list */}
-                <div className="border-t border-mocha/5 pt-3.5 mt-1">
-                  <p className="text-[10px] text-taupe tracking-wider uppercase mb-2.5 font-medium">Select Location</p>
-                  <div className="grid grid-cols-3 gap-2">
-                    {countries.map(c => (
-                      <button
-                        key={c.code}
-                        onClick={() => {
-                          onChangeCountry(c.code);
-                          setMenuOpen(false);
-                        }}
-                        className={`px-2 py-1.5 rounded-xl border text-[10px] flex items-center justify-center gap-1.5 transition-all ${
-                          country === c.code
-                            ? 'border-gold bg-gold/10 text-gold-dk font-semibold'
-                            : 'border-mocha/5 bg-cream/50 text-mocha'
-                        }`}
-                      >
-                        <span>{c.flag}</span>
-                        <span>{c.currency}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {userName && userName !== 'Guest' && (
-                  <p className="text-xs text-mocha font-light tracking-wide italic pt-1">
-                    Hi, {userName} 🌸
-                  </p>
-                )}
 
                 <a href="#contact" onClick={() => setMenuOpen(false)}
                   className="mt-2 px-5 py-2.5 rounded-full bg-mocha text-white text-sm font-medium text-center tracking-wide">

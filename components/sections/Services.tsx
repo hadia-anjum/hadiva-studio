@@ -2,13 +2,13 @@
 import { motion } from 'framer-motion';
 
 const services = [
-  { icon: '💍', title: 'Event Microsites', desc: 'Mini-sites for Weddings & Birthdays with countdowns, maps, music, galleries, and RSVP.', tag: 'Most Popular' },
+  { icon: '💍', title: 'Event Microsites', desc: 'Mini-sites for Weddings, Shaadi, and Birthdays with countdowns, maps, music, galleries, and RSVP.', tag: 'Most Popular' },
+  { icon: '💼', title: 'Small Business Websites', desc: 'Custom high-end landing pages, product launch showcases, and responsive websites to elevate your brand presence.' },
   { icon: '👶', title: 'Baby memory Website', desc: 'Beautiful milestone trackers for name reveals, monthly growth photos, and family wishes.' },
   { icon: '❤️', title: 'Digital Proposals', desc: 'Bespoke proposal websites with custom timelines, music, and playful interactive YES/NO buttons.' },
   { icon: '🎓', title: 'Graduation Portfolios', desc: 'QR-enabled professional portfolios displaying CV credentials, projects, and achievements.' },
   { icon: '💌', title: 'Digital Greeting Cards', desc: 'Interactive premium cards with animations, custom typing effects, music, and voice notes.' },
-  { icon: '💼', title: 'Business Launch Pages', desc: 'High-converting landing pages for cafe QR menus, coming-soon product launches, and brands.' },
-  { icon: '✨', title: 'Invitation Builder SaaS', desc: 'Subscription-based template builder allowing users to generate their own custom digital invites.' },
+  { icon: '🍽️', title: 'QR Menu Websites', desc: 'Elegant digital menus for restaurants and cafes with quick navigation, images, and reviews.' },
   { icon: '🕊️', title: 'Memorial Tributes', desc: 'Timeless memory timelines, photo boards, and space for family tributes to celebrate loved ones.' },
 ];
 
