@@ -264,7 +264,7 @@ export default function Showcase() {
               See It In <span className="text-gold-dk italic font-normal normal-case">Action</span>
             </h2>
             <p className="text-taupe max-w-xl mx-auto text-xs sm:text-sm font-light leading-relaxed font-jost">
-              This is a fully interactive demonstration of our premium layouts. Toggle between views, check RSVP submissions, and see exactly what your guests will experience.
+              This is a fully interactive demonstration of our premium layouts. We design custom solutions for weddings, milestones, portfolios, and small business brand landing pages. Toggle the device view to see the responsiveness.
             </p>
           </motion.div>
         </div>

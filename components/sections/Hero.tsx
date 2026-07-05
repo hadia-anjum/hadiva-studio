@@ -101,7 +101,7 @@ export default function Hero() {
           className="font-cormorant text-mocha font-light leading-[1.2] mb-8 uppercase tracking-[0.1em]"
         >
           <span className="block text-4xl sm:text-6xl lg:text-8xl">Crafting Timeless</span>
-          <span className="block text-3xl sm:text-5xl lg:text-7xl text-gold-dk font-normal tracking-[0.15em] mt-2">Digital Weddings</span>
+          <span className="block text-3xl sm:text-5xl lg:text-7xl text-gold-dk font-normal tracking-[0.15em] mt-2">Digital Websites</span>
         </motion.h1>
 
         {/* Subtitle */}
@@ -111,7 +111,7 @@ export default function Hero() {
           transition={{ delay: 0.7, duration: 0.6 }}
           className="text-taupe text-sm sm:text-base max-w-lg mx-auto mb-10 leading-relaxed font-light tracking-wide font-jost"
         >
-          Premium interactive microsites and digital guest experiences with live RSVPs, countdowns, galleries, and background music — designed to leave a lasting impression.
+          Bespoke business landing pages, interactive digital invitations, brand portfolios, and digital menu experiences — designed to leave a lasting impression.
         </motion.p>
 
         {/* Action Buttons */}

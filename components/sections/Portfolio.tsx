@@ -2,18 +2,18 @@
 import { useState } from 'react';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 
-const categories = ['All', 'Wedding', 'Engagement', 'Birthday', 'Nikkah', 'Baby Shower', 'Business'];
+const categories = ['All', 'Business', 'Wedding', 'Nikkah', 'Events'];
 
 const items = [
-  { id: 1, title: 'Amara & Sebastian', cat: 'Wedding', emoji: '💍', gradient: 'from-[#FAF8F5] via-[#F3EFE9] to-[#E9DFD3]', accent: 'rose', year: '2025' },
-  { id: 2, title: 'Layla & Daniel', cat: 'Wedding', emoji: '🌹', gradient: 'from-[#FCFAF7] via-[#F5EFE6] to-[#EADEC9]', accent: 'amber', year: '2025' },
-  { id: 3, title: 'Nadia & Rizky', cat: 'Nikkah', emoji: '🕌', gradient: 'from-[#F7FAF6] via-[#EDF3EC] to-[#DBE7DA]', accent: 'emerald', year: '2025' },
-  { id: 4, title: 'Sofia Birthday', cat: 'Birthday', emoji: '🎂', gradient: 'from-[#FAF7FC] via-[#F2ECF5] to-[#E3D9E8]', accent: 'violet', year: '2024' },
-  { id: 5, title: 'Baby Nara Arrives', cat: 'Baby Shower', emoji: '👶', gradient: 'from-[#F7FAFC] via-[#ECF3F5] to-[#D9E5E8]', accent: 'sky', year: '2024' },
-  { id: 6, title: 'Alinta & James', cat: 'Engagement', emoji: '💑', gradient: 'from-[#FAF8F5] via-[#F4EDE5] to-[#E8DDD0]', accent: 'orange', year: '2025' },
-  { id: 7, title: 'Lumina Brand Launch', cat: 'Business', emoji: '🚀', gradient: 'from-[#F7F8FA] via-[#ECEDF2] to-[#D9DCE8]', accent: 'indigo', year: '2024' },
-  { id: 8, title: 'Hana Sweet 17', cat: 'Birthday', emoji: '🎉', gradient: 'from-[#FAF7F8] via-[#F5ECED] to-[#E8D9DC]', accent: 'pink', year: '2024' },
-  { id: 9, title: 'Sarah & Omar', cat: 'Nikkah', emoji: '✨', gradient: 'from-[#F6FAF9] via-[#ECF5F3] to-[#D9E8E4]', accent: 'teal', year: '2025' },
+  { id: 1, title: 'Bakehouse Cafe & Bakery', cat: 'Business', emoji: '🥐', gradient: 'from-[#FAF8F5] via-[#F3EFE9] to-[#E9DFD3]', accent: 'amber', year: '2025' },
+  { id: 2, title: 'Amara & Sebastian', cat: 'Wedding', emoji: '💍', gradient: 'from-[#FAF8F5] via-[#F3EFE9] to-[#E9DFD3]', accent: 'rose', year: '2025' },
+  { id: 3, title: 'Aura Studio Co-Working', cat: 'Business', emoji: '🏢', gradient: 'from-[#F7F8FA] via-[#ECEDF2] to-[#D9DCE8]', accent: 'indigo', year: '2025' },
+  { id: 4, title: 'Nadia & Rizky', cat: 'Nikkah', emoji: '🕌', gradient: 'from-[#F7FAF6] via-[#EDF3EC] to-[#DBE7DA]', accent: 'emerald', year: '2025' },
+  { id: 5, title: 'Lumina Skincare Brand', cat: 'Business', emoji: '🧴', gradient: 'from-[#FAF7F8] via-[#F5ECED] to-[#E8D9DC]', accent: 'pink', year: '2024' },
+  { id: 6, title: 'Sofia Birthday Bash', cat: 'Events', emoji: '🎂', gradient: 'from-[#FAF7FC] via-[#F2ECF5] to-[#E3D9E8]', accent: 'violet', year: '2024' },
+  { id: 7, title: 'Baby Nara Milestone', cat: 'Events', emoji: '👶', gradient: 'from-[#F7FAFC] via-[#ECF3F5] to-[#D9E5E8]', accent: 'sky', year: '2024' },
+  { id: 8, title: 'Zen Dental Clinic', cat: 'Business', emoji: '🦷', gradient: 'from-[#F6FAF9] via-[#ECF5F3] to-[#D9E8E4]', accent: 'teal', year: '2025' },
+  { id: 9, title: 'Layla & Daniel', cat: 'Wedding', emoji: '🌹', gradient: 'from-[#FCFAF7] via-[#F5EFE6] to-[#EADEC9]', accent: 'amber', year: '2025' },
 ];
 
 export default function Portfolio() {
