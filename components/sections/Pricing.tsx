@@ -39,7 +39,7 @@ export default function Pricing() {
           <h3 className="font-cormorant text-mocha font-semibold text-2xl mb-4">Tailored to Your Vision</h3>
           
           <p className="text-taupe text-sm leading-relaxed font-light mb-8 max-w-md mx-auto">
-            Since every digital invitation, baby memory timeline, graduation portfolio, and small business launch page we curate is uniquely personalized, we do not believe in one-size-fits-all package rates.
+            Since every digital invitation, baby memory timeline, graduation portfolio, and small business website we curate is uniquely personalized, we do not believe in one-size-fits-all package rates.
           </p>
 
           {/* Golden notice box */}
@@ -49,10 +49,10 @@ export default function Pricing() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a
-              href="#contact"
+              href="mailto:hadiaanjum61@gmal.com"
               className="px-8 py-3.5 rounded-full bg-mocha text-white text-xs font-semibold tracking-widest uppercase hover:bg-mocha-2 transition-all duration-300 shadow-md"
             >
-              Inquire Now
+              Email Directly
             </a>
             <a
               href="https://instagram.com/hadivastudio"

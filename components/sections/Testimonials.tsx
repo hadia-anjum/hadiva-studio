@@ -3,10 +3,10 @@ import { useState, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 
 const testimonials = [
-  { name: 'Amara S.', location: 'Jakarta, Indonesia', stars: 5, quote: "Hadiva Studio completely transformed my wedding vision into a digital masterpiece. Our guests couldn't stop praising the elegant botanical layout, background music, and seamless RSVP.", event: 'Wedding Website', avatar: '👰' },
-  { name: 'Priya K.', location: 'Singapore', stars: 5, quote: "The curation, animations, and RSVP dashboard were absolute perfection. It felt like walking through a high-end luxury digital gallery, not just opening an invite.", event: 'Wedding Website', avatar: '💍' },
-  { name: 'Isabella R.', location: 'London, UK', stars: 5, quote: "Exceeded all expectations. The design represents pure luxury. The floral animation matched our physical stationary themes flawlessly. Super fast and professional team.", event: 'Engagement Page', avatar: '💕' },
-  { name: 'Siti N.', location: 'Kuala Lumpur', stars: 5, quote: "Elegant beyond words. The Islamic arabesque details were integrated with absolute sophistication. Guest RSVP tracking was extremely simple to handle.", event: 'Nikkah Website', avatar: '🌙' },
+  { name: 'Ayesha M.', location: 'Lahore, Pakistan', stars: 5, quote: "We commissioned Hadiva Studio to create a website for our custom cake bakery. The experience was seamless. The layout is as premium as our pastries, and our custom orders have doubled since going live!", event: 'Bakery Brand Site', avatar: '🥐' },
+  { name: 'Amara S.', location: 'Jakarta, Indonesia', stars: 5, quote: "Hadiva Studio completely transformed our wedding invitation into a digital masterpiece. Our guests couldn't stop praising the elegant botanical layout, background music, and smooth RSVP timeline.", event: 'Wedding Microsite', avatar: '👰' },
+  { name: 'Daniel K.', location: 'Singapore', stars: 5, quote: "The QR Menu website created for our cafe is absolute perfection. It's incredibly fast, beautifully animated, and matches our physical branding flawlessly. Our customers absolutely love the interface!", event: 'Restaurant QR Menu', avatar: '☕' },
+  { name: 'Zainab R.', location: 'Dubai, UAE', stars: 5, quote: "My graduation portfolio website is beautiful! The QR-enabled access makes sharing my design work with recruiters during networking events instant, professional, and memorable.", event: 'Creative Portfolio', avatar: '🎓' },
 ];
 
 export default function Testimonials() {
