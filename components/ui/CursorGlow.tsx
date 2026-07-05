@@ -3,56 +3,42 @@ import { useEffect, useRef } from 'react';
 
 export default function CursorGlow() {
   const glowRef = useRef<HTMLDivElement>(null);
-  const trailsRef = useRef<{ x: number; y: number; el: HTMLDivElement }[]>([]);
-  const posRef = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
-    if (window.innerWidth < 768) return;
-
-    // Create trail dots
-    const numTrails = 8;
+    if (typeof window === 'undefined' || window.innerWidth < 768) return;
+    const numTrails = 7;
     const trails: { x: number; y: number; el: HTMLDivElement }[] = [];
     for (let i = 0; i < numTrails; i++) {
       const el = document.createElement('div');
-      el.style.cssText = `
-        position: fixed; pointer-events: none; z-index: 9998; border-radius: 50%;
-        width: ${8 - i * 0.7}px; height: ${8 - i * 0.7}px;
-        background: rgba(212, 175, 55, ${0.4 - i * 0.04});
-        transition: transform 0.1s ease; transform: translate(-50%, -50%);
-        left: -100px; top: -100px;
-      `;
+      el.style.cssText = `position:fixed;pointer-events:none;z-index:9998;border-radius:50%;width:${7-i*0.6}px;height:${7-i*0.6}px;background:rgba(201,169,110,${0.5-i*0.06});transform:translate(-50%,-50%);left:-100px;top:-100px;transition: transform 0.05s ease;`;
       document.body.appendChild(el);
       trails.push({ x: -100, y: -100, el });
     }
-    trailsRef.current = trails;
-
-    const handleMove = (e: MouseEvent) => {
-      posRef.current = { x: e.clientX, y: e.clientY };
+    const pos = { x: 0, y: 0 };
+    const onMove = (e: MouseEvent) => {
+      pos.x = e.clientX; pos.y = e.clientY;
       if (glowRef.current) {
         glowRef.current.style.left = e.clientX + 'px';
         glowRef.current.style.top = e.clientY + 'px';
       }
     };
-
-    let rafId: number;
-    const animateTrails = () => {
-      let x = posRef.current.x;
-      let y = posRef.current.y;
-      trails.forEach((trail, i) => {
-        trail.x += (x - trail.x) * (0.15 - i * 0.01);
-        trail.y += (y - trail.y) * (0.15 - i * 0.01);
-        trail.el.style.left = trail.x + 'px';
-        trail.el.style.top = trail.y + 'px';
-        x = trail.x; y = trail.y;
+    let raf: number;
+    const loop = () => {
+      let x = pos.x, y = pos.y;
+      trails.forEach((t, i) => {
+        t.x += (x - t.x) * (0.15 - i * 0.01);
+        t.y += (y - t.y) * (0.15 - i * 0.01);
+        t.el.style.left = t.x + 'px';
+        t.el.style.top = t.y + 'px';
+        x = t.x; y = t.y;
       });
-      rafId = requestAnimationFrame(animateTrails);
+      raf = requestAnimationFrame(loop);
     };
-    animateTrails();
-
-    window.addEventListener('mousemove', handleMove);
+    loop();
+    window.addEventListener('mousemove', onMove);
     return () => {
-      window.removeEventListener('mousemove', handleMove);
-      cancelAnimationFrame(rafId);
+      window.removeEventListener('mousemove', onMove);
+      cancelAnimationFrame(raf);
       trails.forEach(t => t.el.remove());
     };
   }, []);
@@ -62,11 +48,13 @@ export default function CursorGlow() {
       ref={glowRef}
       className="hidden md:block fixed pointer-events-none z-[9997]"
       style={{
-        width: '350px', height: '350px',
-        background: 'radial-gradient(circle, rgba(212,175,55,0.06) 0%, transparent 70%)',
+        width: '280px',
+        height: '280px',
+        background: 'radial-gradient(circle, rgba(201,169,110,0.08) 0%, transparent 70%)',
         transform: 'translate(-50%, -50%)',
-        transition: 'left 0.12s ease, top 0.12s ease',
-        left: '-200px', top: '-200px',
+        transition: 'left 0.1s ease, top 0.1s ease',
+        left: '-200px',
+        top: '-200px',
       }}
     />
   );

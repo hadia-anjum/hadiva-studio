@@ -7,129 +7,133 @@ export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const c = canvasRef.current;
+    if (!c) return;
+    const ctx = c.getContext('2d');
     if (!ctx) return;
+    c.width = window.innerWidth;
+    c.height = window.innerHeight;
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const petals = Array.from({ length: 30 }, () => ({
+      x: Math.random() * c.width,
+      y: Math.random() * c.height,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: Math.random() * 0.4 + 0.15,
+      size: Math.random() * 5 + 2,
+      angle: Math.random() * Math.PI * 2,
+      va: (Math.random() - 0.5) * 0.015,
+      op: Math.random() * 0.25 + 0.05,
+      hue: Math.random() * 30 + 15, // soft warm rose/gold hues
+    }));
 
-    const petals: Array<{ x: number; y: number; vx: number; vy: number; size: number; angle: number; vAngle: number; opacity: number; color: string }> = [];
-    const colors = ['rgba(212,175,55,', 'rgba(255,228,196,', 'rgba(245,222,179,', 'rgba(255,239,213,'];
-
-    for (let i = 0; i < 35; i++) {
-      petals.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: Math.random() * 0.5 + 0.2,
-        size: Math.random() * 6 + 3,
-        angle: Math.random() * Math.PI * 2,
-        vAngle: (Math.random() - 0.5) * 0.02,
-        opacity: Math.random() * 0.4 + 0.05,
-        color: colors[Math.floor(Math.random() * colors.length)],
-      });
-    }
-
-    let animId: number;
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let id: number;
+    const draw = () => {
+      ctx.clearRect(0, 0, c.width, c.height);
       petals.forEach(p => {
-        p.x += p.vx; p.y += p.vy; p.angle += p.vAngle;
-        if (p.y > canvas.height + 20) { p.y = -20; p.x = Math.random() * canvas.width; }
+        p.x += p.vx;
+        p.y += p.vy;
+        p.angle += p.va;
+        if (p.y > c.height + 20) {
+          p.y = -20;
+          p.x = Math.random() * c.width;
+        }
         ctx.save();
         ctx.translate(p.x, p.y);
         ctx.rotate(p.angle);
         ctx.beginPath();
-        ctx.ellipse(0, 0, p.size, p.size * 1.6, 0, 0, Math.PI * 2);
-        ctx.fillStyle = p.color + p.opacity + ')';
+        ctx.ellipse(0, 0, p.size, p.size * 1.7, 0, 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(${p.hue}, 40%, 80%, ${p.op})`;
         ctx.fill();
         ctx.restore();
       });
-      animId = requestAnimationFrame(animate);
+      id = requestAnimationFrame(draw);
     };
-    animate();
-
-    const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
-    window.addEventListener('resize', resize);
-    return () => { cancelAnimationFrame(animId); window.removeEventListener('resize', resize); };
+    draw();
+    const onResize = () => {
+      c.width = window.innerWidth;
+      c.height = window.innerHeight;
+    };
+    window.addEventListener('resize', onResize);
+    return () => {
+      cancelAnimationFrame(id);
+      window.removeEventListener('resize', onResize);
+    };
   }, []);
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#080603]">
-      {/* Canvas petals */}
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden marble-bg">
       <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-0" />
 
-      {/* Rich dark background layers */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_60%,rgba(212,175,55,0.07)_0%,transparent_70%)] z-[1]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_40%_30%_at_30%_20%,rgba(255,228,196,0.04)_0%,transparent_60%)] z-[1]" />
+      {/* Decorative gold circles & lines matching Squarespace/Webgency aesthetic */}
+      <div className="absolute top-16 right-12 w-[420px] h-[420px] gold-ring opacity-20 animate-spin-slow hidden lg:block" />
+      <div className="absolute top-24 right-20 w-[340px] h-[340px] gold-ring opacity-15 hidden lg:block" style={{ animationDirection: 'reverse' }} />
+      <div className="absolute -bottom-20 -left-20 w-[350px] h-[350px] gold-ring opacity-15 animate-spin-slow hidden lg:block" />
 
-      {/* Gold decorative lines */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-32 bg-gradient-to-b from-transparent to-gold/30 z-[2]" />
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-px h-32 bg-gradient-to-t from-transparent to-gold/30 z-[2]" />
+      {/* Soft warm botanical/wreath ambient glows */}
+      <div className="absolute top-1/4 left-1/4 w-56 h-56 rounded-full bg-gold/5 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-44 h-44 rounded-full bg-gold/4 blur-2xl pointer-events-none" />
+
+      {/* Vertical elegant center line */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent to-gold/30 z-[2]" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-t from-transparent to-gold/30 z-[2]" />
 
       {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto pt-24">
-        {/* Label badge */}
+      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto pt-28">
+        {/* Eyebrow badge */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.7 }}
-          className="inline-flex items-center gap-3 mb-8"
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="inline-flex items-center gap-3 mb-6"
         >
-          <div className="h-px w-10 bg-gradient-to-r from-transparent to-gold/60" />
-          <span className="text-gold/80 text-xs tracking-[0.4em] uppercase font-light">
-            Luxury Digital Invitations
+          <div className="h-px w-8 bg-gold/50" />
+          <span className="text-gold-dk text-[11px] tracking-[0.4em] uppercase font-jost font-light">
+            hadiva studio
           </span>
-          <div className="h-px w-10 bg-gradient-to-l from-transparent to-gold/60" />
+          <div className="h-px w-8 bg-gold/50" />
         </motion.div>
 
-        {/* Main heading */}
+        {/* Main luxury headline */}
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="font-playfair text-white font-bold leading-[1.1] mb-6"
+          transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="font-cormorant text-mocha font-light leading-[1.2] mb-8 uppercase tracking-[0.1em]"
         >
-          <span className="text-5xl sm:text-6xl lg:text-8xl block">Crafting</span>
-          <span className="text-5xl sm:text-6xl lg:text-8xl block text-transparent bg-clip-text bg-gradient-to-r from-gold via-amber-300 to-gold">
-            Timeless
-          </span>
-          <span className="text-5xl sm:text-6xl lg:text-8xl block">Digital Weddings</span>
+          <span className="block text-4xl sm:text-6xl lg:text-8xl">Crafting Timeless</span>
+          <span className="block text-3xl sm:text-5xl lg:text-7xl text-gold-dk font-normal tracking-[0.15em] mt-2">Digital Weddings</span>
         </motion.h1>
 
         {/* Subtitle */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.7 }}
-          className="text-stone-400 text-base sm:text-lg max-w-xl mx-auto mb-10 leading-relaxed font-light tracking-wide"
+          transition={{ delay: 0.7, duration: 0.6 }}
+          className="text-taupe text-sm sm:text-base max-w-lg mx-auto mb-10 leading-relaxed font-light tracking-wide font-jost"
         >
-          Interactive wedding websites with live RSVP, countdowns, galleries, and music — 
-          experiences your guests will never forget.
+          Premium interactive microsites and digital guest experiences with live RSVPs, countdowns, galleries, and background music — designed to leave a lasting impression.
         </motion.p>
 
-        {/* CTA Buttons */}
+        {/* Action Buttons */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.7 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          transition={{ delay: 0.9, duration: 0.6 }}
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center font-jost"
         >
           <MagneticButton
             href="#portfolio"
-            className="group relative px-8 py-4 rounded-full bg-gradient-to-r from-gold via-amber-400 to-gold text-black font-semibold text-sm tracking-widest uppercase overflow-hidden"
+            className="group relative px-9 py-3.5 rounded-full bg-mocha text-white font-medium text-xs tracking-widest uppercase overflow-hidden hover:bg-mocha-2 transition-colors duration-300"
           >
             <span className="relative z-10">View Portfolio</span>
-            <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500 skew-x-12" />
+            <div className="absolute inset-0 bg-gold/15 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-12" />
           </MagneticButton>
 
           <MagneticButton
             href="#contact"
-            className="px-8 py-4 rounded-full border border-white/20 text-white text-sm font-light tracking-widest uppercase hover:border-gold/50 hover:text-gold transition-all duration-300"
+            className="px-9 py-3.5 rounded-full border border-gold/60 text-gold-dk font-medium text-xs tracking-widest uppercase hover:bg-gold hover:text-white hover:border-gold transition-all duration-300"
           >
-            Start Your Project
+            Start Project
           </MagneticButton>
         </motion.div>
 
@@ -137,31 +141,31 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.4 }}
-          className="mt-20 flex flex-col items-center gap-2 text-stone-600"
+          transition={{ delay: 1.2 }}
+          className="mt-16 flex flex-col items-center gap-2 text-taupe"
         >
-          <span className="text-xs tracking-[0.3em] uppercase">Scroll</span>
+          <span className="text-[10px] tracking-[0.3em] uppercase font-light font-jost">Scroll</span>
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-px h-12 bg-gradient-to-b from-gold/40 to-transparent"
+            className="w-px h-10 bg-gradient-to-b from-gold/50 to-transparent"
           />
         </motion.div>
       </div>
 
-      {/* Side decorations */}
-      <div className="absolute left-6 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-4 z-[2]">
-        {['RSVP', 'LIVE', 'MUSIC'].map((t, i) => (
-          <motion.div
+      {/* Side aesthetic decorations */}
+      <div className="absolute left-6 top-1/2 -translate-y-1/2 hidden xl:flex flex-col gap-6 z-[2]">
+        {['interactive', 'bespoke', 'refined'].map((t, i) => (
+          <motion.span
             key={t}
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -15 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.2 + i * 0.1 }}
-            className="text-stone-700 text-xs tracking-widest uppercase writing-mode-vertical"
+            transition={{ delay: 1 + i * 0.1 }}
+            className="text-taupe/40 text-[9px] tracking-[0.3em] uppercase font-jost"
             style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
           >
             {t}
-          </motion.div>
+          </motion.span>
         ))}
       </div>
     </section>

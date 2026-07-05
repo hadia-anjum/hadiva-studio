@@ -7,17 +7,18 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setTimeout(() => { setDone(true); setTimeout(onComplete, 800); }, 300);
+    const iv = setInterval(() => {
+      setProgress(p => {
+        const next = p + Math.random() * 10 + 4;
+        if (next >= 100) {
+          clearInterval(iv);
+          setTimeout(() => { setDone(true); setTimeout(onComplete, 700); }, 400);
           return 100;
         }
-        return prev + Math.random() * 12 + 4;
+        return next;
       });
-    }, 120);
-    return () => clearInterval(interval);
+    }, 130);
+    return () => clearInterval(iv);
   }, [onComplete]);
 
   return (
@@ -25,54 +26,43 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
       {!done && (
         <motion.div
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, scale: 1.05 }}
-          transition={{ duration: 0.8, ease: 'easeInOut' }}
-          className="fixed inset-0 z-[9999] bg-[#0D0A06] flex flex-col items-center justify-center overflow-hidden"
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.9, ease: 'easeInOut' }}
+          className="fixed inset-0 z-[9999] marble-bg flex flex-col items-center justify-center overflow-hidden"
         >
-          {/* Background radial glow */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(212,175,55,0.08)_0%,transparent_70%)]" />
+          {/* Decorative gold rings */}
+          <div className="absolute top-[-80px] left-[-80px] w-[300px] h-[300px] gold-ring opacity-20 rotate-slow" />
+          <div className="absolute bottom-[-60px] right-[-60px] w-[250px] h-[250px] gold-ring opacity-15 rotate-slow" style={{animationDirection:'reverse'}} />
+          <div className="absolute top-1/2 right-1/4 w-[180px] h-[180px] gold-ring opacity-10 rotate-slow" />
 
-          {/* Floating petals */}
-          {[...Array(8)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute text-2xl pointer-events-none select-none"
-              style={{ left: `${10 + i * 12}%`, top: `${20 + (i % 3) * 20}%` }}
-              animate={{ y: [-10, 10, -10], opacity: [0.15, 0.4, 0.15], rotate: [0, 15, 0] }}
-              transition={{ duration: 3 + i * 0.4, repeat: Infinity, ease: 'easeInOut', delay: i * 0.3 }}
-            >
-              {['🌸', '✨', '🌿', '💫', '🌺', '✦', '❋', '⋆'][i]}
-            </motion.div>
-          ))}
+          {/* Gold blob decoration */}
+          <div className="absolute top-1/4 left-1/3 w-32 h-32 rounded-full bg-gold/10 blur-3xl" />
+          <div className="absolute bottom-1/3 right-1/3 w-24 h-24 rounded-full bg-gold/8 blur-2xl" />
 
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8, ease: 'easeOut' }}
-            className="text-center mb-12 relative z-10"
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="text-center mb-10 relative z-10 flex flex-col items-center justify-center"
           >
-            <motion.div
-              animate={{ scale: [1, 1.03, 1] }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+            <motion.div 
+              animate={{ scale: [1, 1.02, 1] }} 
+              transition={{ duration: 3, repeat: Infinity }}
+              className="flex flex-col items-center"
             >
-              <p className="font-playfair text-gold text-5xl md:text-7xl font-bold tracking-widest mb-2">
-                HADIVA
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-gold to-gold-dk flex items-center justify-center text-white font-cormorant font-light text-3xl mb-4 shadow-gold-sm">
+                H
+              </div>
+              <p className="font-cormorant text-mocha text-3xl md:text-4xl font-light tracking-[0.25em] uppercase">
+                Hadiva
               </p>
-              <p className="text-stone-400 text-xs tracking-[0.5em] uppercase font-light">
+              <p className="text-gold-dk text-[10px] tracking-[0.4em] uppercase font-jost font-light mt-1">
                 Studio
               </p>
-            </motion.div>
-
-            <motion.div
-              className="mt-4 flex items-center justify-center gap-2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-            >
-              <div className="h-px w-12 bg-gradient-to-r from-transparent to-gold/50" />
-              <span className="text-gold/60 text-xs tracking-widest">✦</span>
-              <div className="h-px w-12 bg-gradient-to-l from-transparent to-gold/50" />
+              <p className="text-taupe text-[10px] tracking-[0.3em] uppercase font-jost font-light mt-5">
+                Crafting Timeless Digital Weddings
+              </p>
             </motion.div>
           </motion.div>
 
@@ -81,19 +71,18 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="relative z-10 w-64 md:w-80"
+            className="relative z-10 w-56 md:w-72"
           >
-            <div className="h-px bg-stone-800 rounded-full overflow-hidden">
+            <div className="h-px bg-mocha/10 rounded-full overflow-hidden">
               <motion.div
-                className="h-full bg-gradient-to-r from-gold/50 via-gold to-amber-300 rounded-full relative"
+                className="h-full bg-gradient-to-r from-gold/60 via-gold to-gold-lt rounded-full relative"
                 style={{ width: `${Math.min(progress, 100)}%` }}
-                transition={{ ease: 'easeOut' }}
               >
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-amber-300 shadow-[0_0_8px_rgba(255,215,0,0.8)]" />
+                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-gold shadow-[0_0_6px_rgba(201,169,110,0.8)]" />
               </motion.div>
             </div>
-            <p className="text-center text-stone-600 text-xs mt-4 tracking-widest uppercase font-light">
-              {progress < 100 ? 'Crafting Your Experience...' : 'Welcome ✦'}
+            <p className="text-center text-taupe text-xs mt-4 tracking-widest uppercase font-light">
+              {progress < 100 ? 'Preparing Your Experience...' : 'Welcome ✦'}
             </p>
           </motion.div>
         </motion.div>
