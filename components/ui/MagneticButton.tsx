@@ -1,6 +1,5 @@
 'use client';
-import { useRef, useEffect, ReactNode, MouseEvent } from 'react';
-import { motion } from 'framer-motion';
+import { useRef, ReactNode, MouseEvent } from 'react';
 
 interface MagneticButtonProps {
   children: ReactNode;
@@ -13,7 +12,7 @@ interface MagneticButtonProps {
 export default function MagneticButton({ children, className = '', href, onClick, strength = 0.35 }: MagneticButtonProps) {
   const ref = useRef<HTMLElement>(null);
 
-  const handleMouseMove = (e: MouseEvent<HTMLElement>) => {
+  const handleMouseMove = (e: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
     if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
@@ -33,7 +32,7 @@ export default function MagneticButton({ children, className = '', href, onClick
         ref={ref as React.RefObject<HTMLAnchorElement>}
         href={href}
         className={commonStyle}
-        onMouseMove={handleMouseMove as any}
+        onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         onClick={onClick}
       >
@@ -46,7 +45,7 @@ export default function MagneticButton({ children, className = '', href, onClick
     <button
       ref={ref as React.RefObject<HTMLButtonElement>}
       className={commonStyle}
-      onMouseMove={handleMouseMove as any}
+      onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
     >
