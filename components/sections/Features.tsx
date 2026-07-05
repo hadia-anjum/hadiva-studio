@@ -2,18 +2,18 @@
 import { motion } from 'framer-motion';
 
 const features = [
-  { icon: '📲', title: 'QR Code Sharing' },
+  { icon: '🍽️', title: 'Interactive QR Menus' },
+  { icon: '📅', title: 'Appointment Booking' },
+  { icon: '📱', title: 'Mobile-First Layouts' },
   { icon: '🗺️', title: 'Google Maps' },
-  { icon: '✉️', title: 'Live RSVP' },
-  { icon: '⏳', title: 'Countdown Timer' },
-  { icon: '🎵', title: 'Background Music' },
-  { icon: '✨', title: 'Micro Animations' },
-  { icon: '🖼️', title: 'Photo Gallery' },
-  { icon: '❤️', title: 'Love Story' },
-  { icon: '📖', title: 'Guest Book' },
-  { icon: '🎬', title: 'Video Embed' },
-  { icon: '🌏', title: 'Multi Language' },
-  { icon: '📱', title: 'Mobile First' },
+  { icon: '✨', title: 'Services Catalog' },
+  { icon: '📸', title: 'Instagram Galleries' },
+  { icon: '🪄', title: 'Micro Animations' },
+  { icon: '💬', title: 'WhatsApp Contact' },
+  { icon: '⭐', title: 'Review Boards' },
+  { icon: '⚡', title: 'High Performance' },
+  { icon: '🎨', title: 'Bespoke Branding' },
+  { icon: '💌', title: 'Live Event RSVPs' },
 ];
 
 export default function Features() {
@@ -33,7 +33,7 @@ export default function Features() {
               Premium <span className="text-gold-dk italic font-normal normal-case">Features</span>
             </h2>
             <p className="text-taupe mt-4 max-w-md mx-auto text-xs sm:text-sm font-light font-jost leading-relaxed">
-              Every digital invitation comes equipped with high-end, responsive utilities.
+              Every bespoke website and digital invitation comes equipped with high-end, responsive utilities.
             </p>
           </motion.div>
         </div>
