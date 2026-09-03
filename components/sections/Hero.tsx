@@ -87,7 +87,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="leading-[1.1] mb-2"
+          className="leading-[1.1] mb-3"
         >
           <span className="block font-cormorant font-light italic text-charcoal text-5xl sm:text-7xl lg:text-8xl tracking-[0.02em]">
             Pinterest-Inspired
@@ -97,14 +97,14 @@ export default function Hero() {
           </span>
         </motion.h1>
 
-        {/* Stylish Script Accent */}
+        {/* Stylish Script Accent — crafted with love in pakistan */}
         <motion.p
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.7, duration: 0.6 }}
-          className="font-script text-rose-dk text-4xl sm:text-5xl tracking-wide mb-6"
+          className="font-script text-rose-dk text-4xl sm:text-5xl tracking-wide mb-6 font-normal"
         >
-          crafted in pakistan
+          crafted with love in pakistan
         </motion.p>
 
         {/* Subtitle */}
