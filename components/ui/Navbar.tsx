@@ -29,37 +29,39 @@ export default function Navbar() {
     <motion.header
       animate={{ y: hidden && !menuOpen ? -100 : 0 }}
       transition={{ duration: 0.4, ease: 'easeInOut' }}
-      className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4 font-poppins"
+      className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4 font-jost"
     >
       <motion.nav
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.6 }}
-        className={`w-full max-w-5xl rounded-2xl transition-all duration-500 ${
+        className={`w-full max-w-5xl rounded-full transition-all duration-500 ${
           scrolled
-            ? 'bg-white/80 backdrop-blur-xl border border-rose-lt/40 shadow-pink-md'
+            ? 'bg-cream/85 backdrop-blur-xl border border-rose-lt/30 shadow-pink-sm'
             : 'bg-transparent'
         }`}
       >
-        <div className="flex items-center justify-between px-6 py-2.5">
+        <div className="flex items-center justify-between px-7 py-3">
           {/* Logo */}
-          <a href="#hero" className="flex items-center gap-2 group">
-            <span className="text-2xl group-hover:scale-110 transition-transform select-none">🎀</span>
-            <span className="font-playfair text-charcoal font-semibold text-xl tracking-wide">
-              Hadiva <span className="text-rose">Studio</span>
+          <a href="#hero" className="flex items-center gap-3 group">
+            <div className="w-8 h-8 rounded-full bg-charcoal flex items-center justify-center text-blush font-cormorant font-light text-base tracking-tighter group-hover:scale-105 transition-transform">
+              H
+            </div>
+            <span className="font-cormorant text-charcoal text-xl tracking-[0.1em] font-medium uppercase">
+              Hadiva <span className="text-rose-dk font-normal italic lowercase">Studio</span>
             </span>
           </a>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-9">
             {navLinks.map(link => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm text-gray hover:text-charcoal transition-colors duration-200 tracking-wide font-light relative group"
+                className="text-xs text-gray hover:text-charcoal transition-colors duration-200 tracking-[0.2em] uppercase font-light relative group"
               >
                 {link.label}
-                <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-rose group-hover:w-full transition-all duration-300" />
+                <span className="absolute -bottom-1 left-0 w-0 h-px bg-rose-dk group-hover:w-full transition-all duration-300" />
               </a>
             ))}
           </div>
@@ -69,7 +71,7 @@ export default function Navbar() {
             <a
               href="https://instagram.com/hadivastudio"
               target="_blank" rel="noopener noreferrer"
-              className="px-5 py-2 rounded-full bg-gradient-to-r from-rose to-hot-pink text-white text-xs tracking-wider uppercase font-medium hover:shadow-pink-md hover:scale-105 transition-all duration-300"
+              className="px-6 py-2.5 rounded-full bg-charcoal text-blush text-[11px] tracking-[0.25em] uppercase font-medium hover:bg-rose-dk hover:text-white transition-all duration-300"
             >
               DM on Instagram
             </a>
@@ -97,19 +99,19 @@ export default function Navbar() {
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden overflow-hidden border-t border-rose-lt/30 px-6 pb-5 bg-white/90 backdrop-blur-xl rounded-b-2xl"
+              className="md:hidden overflow-hidden border-t border-rose-lt/30 px-6 pb-6 bg-cream/95 backdrop-blur-xl rounded-b-3xl"
             >
-              <div className="flex flex-col gap-4 pt-4">
+              <div className="flex flex-col gap-4 pt-4 text-center">
                 {navLinks.map(link => (
                   <a key={link.label} href={link.href} onClick={() => setMenuOpen(false)}
-                    className="text-gray hover:text-charcoal transition-colors text-sm tracking-wide">
+                    className="text-gray hover:text-charcoal transition-colors text-xs tracking-[0.2em] uppercase font-light">
                     {link.label}
                   </a>
                 ))}
 
                 <a href="https://instagram.com/hadivastudio" target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)}
-                  className="mt-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-rose to-hot-pink text-white text-sm font-medium text-center tracking-wide">
-                  DM on Instagram 📩
+                  className="mt-2 px-5 py-3 rounded-full bg-charcoal text-blush text-xs tracking-[0.2em] uppercase font-medium text-center">
+                  DM on Instagram
                 </a>
               </div>
             </motion.div>

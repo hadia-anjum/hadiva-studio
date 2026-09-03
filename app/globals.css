@@ -1,24 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --blush:      #FFF0F3;
-  --blush-2:    #FFE4EC;
-  --rose-lt:    #FFD6E0;
-  --rose:       #FF8FAB;
-  --rose-dk:    #E05C83;
-  --hot-pink:   #FF2D6F;
-  --cream:      #FFF8F0;
-  --charcoal:   #2D2D2D;
-  --gray:       #6B6B6B;
-  --gray-lt:    #A8A8A8;
-  --lavender:   #E8DAEF;
-  --peach:      #FFDAB9;
-  --border:     rgba(255,143,171,0.20);
-  --border-rose:rgba(255,143,171,0.35);
+  --blush:      #FAF4F2;
+  --blush-2:    #F5EBE8;
+  --rose-lt:    #E8C5C8;
+  --rose:       #D49B9F;
+  --rose-dk:    #B56B72;
+  --hot-pink:   #9C4D54;
+  --cream:      #FFFDFB;
+  --charcoal:   #231A1C;
+  --gray:       #6E5F62;
+  --gray-lt:    #A89A9C;
+  --lavender:   #E4D8E2;
+  --peach:      #F5DEC9;
+  --border:     rgba(181, 107, 114, 0.15);
+  --border-rose:rgba(181, 107, 114, 0.30);
 }
 
 @layer base {
@@ -30,7 +30,7 @@
   }
 
   body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Jost', sans-serif;
     background-color: var(--blush);
     color: var(--charcoal);
     line-height: 1.7;
@@ -38,7 +38,7 @@
   }
 
   ::selection {
-    background: rgba(255,143,171,0.25);
+    background: rgba(212, 155, 159, 0.25);
     color: var(--charcoal);
   }
 
@@ -51,9 +51,22 @@
 }
 
 @layer utilities {
-  /* Pink gradient text */
+  .font-cormorant { font-family: 'Cormorant Garamond', serif; }
+  .font-playfair  { font-family: 'Playfair Display', serif; }
+  .font-jost      { font-family: 'Jost', sans-serif; }
+  .font-script    { font-family: 'Pinyon Script', cursive; }
+
+  /* Muted Luxury Rose Gradient Text */
   .pink-text-gradient {
-    background: linear-gradient(135deg, var(--rose-dk) 0%, var(--rose) 50%, var(--hot-pink) 100%);
+    background: linear-gradient(135deg, #231A1C 0%, #B56B72 50%, #8C3F46 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Soft Rose Gold Text Gradient */
+  .rose-text-gradient {
+    background: linear-gradient(135deg, #B56B72 0%, #D49B9F 50%, #B56B72 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -61,32 +74,32 @@
 
   /* Glass card */
   .glass-card {
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 253, 251, 0.75);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 214, 224, 0.4);
+    border: 1px solid rgba(232, 197, 200, 0.35);
   }
 
-  /* Blob background decoration */
+  /* Soft Ambient Background Decoration */
   .blob-pink {
     background: var(--rose-lt);
     border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.4;
+    filter: blur(100px);
+    opacity: 0.25;
   }
 
   .blob-lavender {
     background: var(--lavender);
     border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.3;
+    filter: blur(100px);
+    opacity: 0.2;
   }
 
   .blob-peach {
     background: var(--peach);
     border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.3;
+    filter: blur(100px);
+    opacity: 0.2;
   }
 
   /* Scrollbar hide */
@@ -116,7 +129,7 @@ html.lenis { height: auto; }
 /* Float */
 @keyframes float {
   0%,100% { transform: translateY(0); }
-  50%      { transform: translateY(-14px); }
+  50%      { transform: translateY(-12px); }
 }
 .animate-float { animation: float 6s ease-in-out infinite; }
 

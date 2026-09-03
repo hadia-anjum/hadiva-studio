@@ -9,7 +9,7 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
     const timer = setTimeout(() => {
       setVisible(false);
       setTimeout(onComplete, 500);
-    }, 2200);
+    }, 2000);
     return () => clearTimeout(timer);
   }, [onComplete]);
 
@@ -18,16 +18,17 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
       {visible && (
         <motion.div
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6, ease: 'easeInOut' }}
           className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-blush"
         >
-          {/* Pulsing ribbon */}
+          {/* Monogram emblem */}
           <motion.div
-            animate={{ scale: [1, 1.15, 1] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="text-6xl mb-6 select-none"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="w-14 h-14 rounded-full border border-rose-lt/40 flex items-center justify-center mb-6"
           >
-            🎀
+            <span className="font-cormorant text-charcoal text-2xl font-light italic">H</span>
           </motion.div>
 
           {/* Brand name */}
@@ -35,18 +36,27 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="font-playfair text-charcoal text-2xl sm:text-3xl tracking-wider"
+            className="font-cormorant text-charcoal text-3xl tracking-[0.2em] uppercase font-light text-center"
           >
-            Hadiva <span className="text-rose">Studio</span>
+            Hadiva <span className="text-rose-dk italic lowercase font-serif">Studio</span>
           </motion.h1>
 
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="text-[10px] tracking-[0.35em] text-gray-lt uppercase font-jost mt-2"
+          >
+            Bespoke Packaging
+          </motion.p>
+
           {/* Loading bar */}
-          <motion.div className="mt-6 w-32 h-1 bg-rose-lt/40 rounded-full overflow-hidden">
+          <motion.div className="mt-8 w-28 h-px bg-rose-lt/40 rounded-full overflow-hidden">
             <motion.div
               initial={{ width: '0%' }}
               animate={{ width: '100%' }}
-              transition={{ duration: 2, ease: 'easeInOut' }}
-              className="h-full bg-gradient-to-r from-rose to-hot-pink rounded-full"
+              transition={{ duration: 1.8, ease: 'easeInOut' }}
+              className="h-full bg-rose-dk rounded-full"
             />
           </motion.div>
         </motion.div>
