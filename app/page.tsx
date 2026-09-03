@@ -6,16 +6,10 @@ import CursorGlow from '@/components/ui/CursorGlow';
 import Navbar from '@/components/ui/Navbar';
 
 import Hero from '@/components/sections/Hero';
-import Stats from '@/components/sections/Stats';
-import Services from '@/components/sections/Services';
-import Showcase from '@/components/sections/Showcase';
 import Portfolio from '@/components/sections/Portfolio';
+import Services from '@/components/sections/Services';
 import Process from '@/components/sections/Process';
-import Features from '@/components/sections/Features';
-import WhyUs from '@/components/sections/WhyUs';
 import Testimonials from '@/components/sections/Testimonials';
-import Pricing from '@/components/sections/Pricing';
-import FAQ from '@/components/sections/FAQ';
 import Contact from '@/components/sections/Contact';
 import Footer from '@/components/sections/Footer';
 
@@ -39,16 +33,10 @@ export default function Home() {
         <Navbar />
         <main>
           <Hero />
-          <Stats />
-          <Services />
-          <Showcase />
           <Portfolio />
+          <Services />
           <Process />
-          <Features />
-          <WhyUs />
           <Testimonials />
-          <Pricing />
-          <FAQ />
           <Contact />
         </main>
         <Footer />

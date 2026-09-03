@@ -2,67 +2,60 @@
 import { motion } from 'framer-motion';
 
 const steps = [
-  { num: '01', title: 'Choose Package', desc: 'Browse our curated packages and pick the one that matches your scale and vision.', icon: '📦' },
-  { num: '02', title: 'Share Details', desc: 'Provide event details, story timelines, photo galleries, and playlist choices.', icon: '📝' },
-  { num: '03', title: 'Design & Curation', desc: 'Our creative team designs your bespoke digital experience with extreme attention to detail.', icon: '🎨' },
-  { num: '04', title: 'Review & Polish', desc: 'Preview the draft online and request adjustments. We refine until it feels perfect.', icon: '✍️' },
-  { num: '05', title: 'Launch & Share', desc: 'Your custom link and QR codes are ready to broadcast to friends and family.', icon: '🚀' },
+  { num: '01', title: 'DM Us on Instagram', desc: 'Send us a message on @hadivastudio with your idea, occasion, and budget. We respond within hours!', emoji: '📩' },
+  { num: '02', title: 'Share Your Vision', desc: 'Tell us your color palette, theme, items to include, and any Pinterest inspo. We love mood boards!', emoji: '💭' },
+  { num: '03', title: 'We Create & Deliver', desc: 'We handcraft your dream packaging and deliver it right to your doorstep across Pakistan!', emoji: '🎁' },
 ];
 
 export default function Process() {
   return (
-    <section id="process" className="py-24 bg-cream relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(201,169,110,0.04)_0%,transparent_70%)] pointer-events-none" />
+    <section id="process" className="py-24 bg-white relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(255,143,171,0.05)_0%,transparent_70%)]" />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-4">
-        {/* Header */}
+      <div className="relative z-10 max-w-3xl mx-auto px-4">
         <div className="text-center mb-16">
           <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <div className="flex items-center justify-center gap-3 mb-2">
-              <div className="h-px w-6 bg-gold/50" />
-              <span className="text-gold-dk text-[10px] tracking-[0.35em] uppercase font-jost font-light">the workflow</span>
-              <div className="h-px w-6 bg-gold/50" />
+              <div className="h-px w-6 bg-rose/40" />
+              <span className="text-rose text-[10px] tracking-[0.35em] uppercase font-light">super simple</span>
+              <div className="h-px w-6 bg-rose/40" />
             </div>
-            <h2 className="font-cormorant text-mocha text-3xl sm:text-5xl font-light uppercase tracking-wider">
-              Simple &amp; <span className="text-gold-dk italic font-normal normal-case">Refined</span> Process
+            <h2 className="font-playfair text-charcoal text-3xl sm:text-5xl font-semibold">
+              How It <span className="pink-text-gradient">Works</span>
             </h2>
           </motion.div>
         </div>
 
-        <div className="relative">
-          {/* Vertical timeline line */}
-          <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-gold/45 via-gold/15 to-transparent hidden md:block" />
-
-          <div className="flex flex-col gap-10">
-            {steps.map((step, i) => (
-              <motion.div
-                key={step.num}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.6 }}
-                className="flex gap-6 md:gap-8 items-start relative font-jost"
-              >
-                {/* Step node */}
-                <div className="relative flex-shrink-0">
-                  <div className="w-16 h-16 rounded-full border border-gold/40 bg-cream flex items-center justify-center shadow-warm-sm relative z-10">
-                    <span className="text-2xl select-none">{step.icon}</span>
-                  </div>
-                  <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-gold-dk text-white text-[9px] font-bold flex items-center justify-center z-20">
-                    {i + 1}
-                  </span>
+        <div className="flex flex-col gap-8">
+          {steps.map((step, i) => (
+            <motion.div
+              key={step.num}
+              initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.15, duration: 0.6 }}
+              className="flex gap-6 items-start"
+            >
+              {/* Circle */}
+              <div className="relative flex-shrink-0">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-rose-lt to-blush-2 border border-rose/20 flex items-center justify-center">
+                  <span className="text-2xl select-none">{step.emoji}</span>
                 </div>
+                <span className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-gradient-to-r from-rose to-hot-pink text-white text-xs font-bold flex items-center justify-center shadow-pink-sm">{i + 1}</span>
+              </div>
 
-                {/* Content */}
-                <div className="pt-2">
-                  <span className="text-gold-dk text-[10px] tracking-widest font-light font-jost uppercase">{step.num}</span>
-                  <h3 className="font-cormorant text-mocha text-xl font-semibold mt-0.5 mb-1.5">{step.title}</h3>
-                  <p className="text-taupe text-xs leading-relaxed font-light max-w-md">{step.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+              {/* Content */}
+              <div className="pt-2">
+                <span className="text-rose/50 text-xs tracking-widest font-light">{step.num}</span>
+                <h3 className="font-playfair text-charcoal text-xl font-semibold mt-1 mb-2">{step.title}</h3>
+                <p className="text-gray text-sm leading-relaxed font-light max-w-md">{step.desc}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
+
+        {/* Dotted connector line (desktop) */}
+        <div className="absolute left-[calc(50%-20rem)] top-[12rem] bottom-[8rem] w-px border-l-2 border-dashed border-rose-lt/40 hidden md:block" />
       </div>
     </section>
   );

@@ -1,100 +1,121 @@
 'use client';
 import { useState } from 'react';
-import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const categories = ['All', 'Business', 'Wedding', 'Nikkah', 'Events'];
+const categories = ['All', 'Gift Boxes', 'Wedding', 'Birthday', 'Corporate', 'Eid & Ramadan'];
 
 const items = [
-  { id: 1, title: 'Bakehouse Cafe & Bakery', cat: 'Business', emoji: '🥐', gradient: 'from-[#FAF8F5] via-[#F3EFE9] to-[#E9DFD3]', accent: 'amber', year: '2025' },
-  { id: 2, title: 'Amara & Sebastian', cat: 'Wedding', emoji: '💍', gradient: 'from-[#FAF8F5] via-[#F3EFE9] to-[#E9DFD3]', accent: 'rose', year: '2025' },
-  { id: 3, title: 'Aura Studio Co-Working', cat: 'Business', emoji: '🏢', gradient: 'from-[#F7F8FA] via-[#ECEDF2] to-[#D9DCE8]', accent: 'indigo', year: '2025' },
-  { id: 4, title: 'Nadia & Rizky', cat: 'Nikkah', emoji: '🕌', gradient: 'from-[#F7FAF6] via-[#EDF3EC] to-[#DBE7DA]', accent: 'emerald', year: '2025' },
-  { id: 5, title: 'Lumina Skincare Brand', cat: 'Business', emoji: '🧴', gradient: 'from-[#FAF7F8] via-[#F5ECED] to-[#E8D9DC]', accent: 'pink', year: '2024' },
-  { id: 6, title: 'Sofia Birthday Bash', cat: 'Events', emoji: '🎂', gradient: 'from-[#FAF7FC] via-[#F2ECF5] to-[#E3D9E8]', accent: 'violet', year: '2024' },
-  { id: 7, title: 'Baby Nara Milestone', cat: 'Events', emoji: '👶', gradient: 'from-[#F7FAFC] via-[#ECF3F5] to-[#D9E5E8]', accent: 'sky', year: '2024' },
-  { id: 8, title: 'Zen Dental Clinic', cat: 'Business', emoji: '🦷', gradient: 'from-[#F6FAF9] via-[#ECF5F3] to-[#D9E8E4]', accent: 'teal', year: '2025' },
-  { id: 9, title: 'Layla & Daniel', cat: 'Wedding', emoji: '🌹', gradient: 'from-[#FCFAF7] via-[#F5EFE6] to-[#EADEC9]', accent: 'amber', year: '2025' },
+  { id: 1, title: 'Rose Gold Gift Box', category: 'Gift Boxes', emoji: '🎁', color: 'from-rose-lt to-blush-2' },
+  { id: 2, title: 'Nikkah Hamper Set', category: 'Wedding', emoji: '💍', color: 'from-lavender to-blush' },
+  { id: 3, title: 'Birthday Surprise Box', category: 'Birthday', emoji: '🎂', color: 'from-peach to-blush' },
+  { id: 4, title: 'Corporate Welcome Kit', category: 'Corporate', emoji: '💼', color: 'from-mint to-blush' },
+  { id: 5, title: 'Eid Mithai Box', category: 'Eid & Ramadan', emoji: '🌙', color: 'from-rose-lt to-lavender' },
+  { id: 6, title: 'Bridal Trousseau Box', category: 'Wedding', emoji: '👰', color: 'from-blush-2 to-rose-lt' },
+  { id: 7, title: 'Baby Shower Hamper', category: 'Gift Boxes', emoji: '👶', color: 'from-lavender to-mint' },
+  { id: 8, title: 'Anniversary Package', category: 'Gift Boxes', emoji: '❤️', color: 'from-rose-lt to-peach' },
+  { id: 9, title: 'Ramadan Gift Set', category: 'Eid & Ramadan', emoji: '✨', color: 'from-peach to-lavender' },
+  { id: 10, title: 'Graduation Celebration', category: 'Birthday', emoji: '🎓', color: 'from-mint to-rose-lt' },
+  { id: 11, title: 'Client Appreciation Box', category: 'Corporate', emoji: '⭐', color: 'from-blush to-peach' },
+  { id: 12, title: 'Mehndi Night Hamper', category: 'Wedding', emoji: '🌸', color: 'from-rose-lt to-blush-2' },
 ];
 
 export default function Portfolio() {
   const [active, setActive] = useState('All');
-
-  const filtered = active === 'All' ? items : items.filter(i => i.cat === active);
+  const filtered = active === 'All' ? items : items.filter(i => i.category === active);
 
   return (
-    <section id="portfolio" className="py-24 bg-cream relative overflow-hidden">
-      {/* Background marble accent */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_50%,rgba(201,169,110,0.05)_0%,transparent_70%)] pointer-events-none" />
+    <section id="portfolio" className="py-24 bg-white relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-blush to-transparent pointer-events-none" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-14">
           <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <div className="flex items-center justify-center gap-3 mb-2">
-              <div className="h-px w-6 bg-gold/50" />
-              <span className="text-gold-dk text-[10px] tracking-[0.35em] uppercase font-jost font-light">our creations</span>
-              <div className="h-px w-6 bg-gold/50" />
+              <div className="h-px w-6 bg-rose/40" />
+              <span className="text-rose text-[10px] tracking-[0.35em] uppercase font-light">our work</span>
+              <div className="h-px w-6 bg-rose/40" />
             </div>
-            <h2 className="font-cormorant text-mocha text-3xl sm:text-5xl font-light uppercase tracking-wider">
-              Bespoke <span className="text-gold-dk italic font-normal normal-case">Portfolio</span>
+            <h2 className="font-playfair text-charcoal text-3xl sm:text-5xl font-semibold">
+              Packaging <span className="pink-text-gradient">Portfolio</span>
             </h2>
+            <p className="text-gray mt-4 max-w-md mx-auto text-xs sm:text-sm font-light leading-relaxed">
+              A glimpse of our aesthetic, Pinterest-inspired creations 🎀
+            </p>
           </motion.div>
         </div>
 
-        {/* Filter tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10 font-jost">
+        {/* Category filters */}
+        <div className="flex flex-wrap justify-center gap-2 mb-12">
           {categories.map(cat => (
-            <motion.button
+            <button
               key={cat}
               onClick={() => setActive(cat)}
-              whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
-              className={`px-4 py-1.5 rounded-full text-[10px] tracking-widest uppercase transition-all duration-300 ${
-                active === cat 
-                  ? 'bg-mocha text-white font-semibold shadow-warm-sm' 
-                  : 'border border-mocha/10 text-taupe hover:border-gold/30 hover:text-gold-dk'
+              className={`px-4 py-2 rounded-full text-xs font-medium tracking-wide transition-all duration-300 ${
+                active === cat
+                  ? 'bg-gradient-to-r from-rose to-hot-pink text-white shadow-pink-sm'
+                  : 'bg-rose-lt/20 text-gray hover:bg-rose-lt/40 hover:text-charcoal'
               }`}
             >
               {cat}
-            </motion.button>
+            </button>
           ))}
         </div>
 
         {/* Masonry grid */}
-        <LayoutGroup>
-          <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 font-jost">
-            <AnimatePresence mode="popLayout">
-              {filtered.map((item, i) => (
-                <motion.div
-                  key={item.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.93 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.85 }}
-                  transition={{ duration: 0.4, delay: i * 0.03 }}
-                  className="group relative rounded-3xl overflow-hidden border border-mocha/5 hover:border-gold/40 hover:shadow-warm-md transition-all duration-500 cursor-pointer"
-                  style={{ minHeight: i % 3 === 1 ? '270px' : '230px' }}
-                >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient}`} />
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6 transition-all duration-500">
-                    {/* Wreath outline decoration */}
-                    <div className="absolute inset-4 border border-gold/10 rounded-2xl group-hover:scale-98 transition-transform duration-500 pointer-events-none" />
-                    <div className="text-5xl mb-3 group-hover:scale-105 transition-transform duration-500 select-none">{item.emoji}</div>
-                    <div className="text-center relative z-10">
-                      <p className="text-[8px] text-taupe tracking-[0.2em] uppercase mb-1">{item.cat} · {item.year}</p>
-                      <p className="font-cormorant text-mocha font-semibold text-lg">{item.title}</p>
-                    </div>
-                  </div>
-                  {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-cream/90 via-cream/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end justify-center pb-6">
-                    <span className="text-[10px] tracking-widest uppercase text-mocha border border-mocha/20 bg-cream px-5 py-2 rounded-full font-medium shadow-warm-sm">
-                      View Demo ↗
-                    </span>
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
-        </LayoutGroup>
+        <motion.div layout className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+          <AnimatePresence mode="popLayout">
+            {filtered.map((item, i) => (
+              <motion.div
+                key={item.id}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+                className={`break-inside-avoid group relative rounded-3xl overflow-hidden border border-rose-lt/20 cursor-pointer hover:shadow-pink-md transition-shadow duration-500 ${
+                  i % 3 === 0 ? 'aspect-[3/4]' : i % 3 === 1 ? 'aspect-square' : 'aspect-[4/5]'
+                }`}
+              >
+                {/* Gradient placeholder */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${item.color}`} />
+
+                {/* Emoji icon */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <span className="text-5xl sm:text-6xl mb-3 group-hover:scale-110 transition-transform duration-300 select-none">{item.emoji}</span>
+                  <span className="text-charcoal/60 text-xs font-medium tracking-wide opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {item.title}
+                  </span>
+                </div>
+
+                {/* Hover pink overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-rose/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                {/* Category badge */}
+                <span className="absolute top-3 left-3 text-[9px] px-2.5 py-1 rounded-full bg-white/80 backdrop-blur-sm text-rose-dk font-medium tracking-wide">
+                  {item.category}
+                </span>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mt-14"
+        >
+          <p className="text-gray text-sm mb-4 font-light">Want to see more? Check out our Instagram for daily updates 📸</p>
+          <a
+            href="https://instagram.com/hadivastudio"
+            target="_blank" rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-gradient-to-r from-rose to-hot-pink text-white text-xs font-semibold tracking-widest uppercase hover:shadow-pink-lg hover:scale-105 transition-all duration-300"
+          >
+            Follow @hadivastudio
+          </a>
+        </motion.div>
       </div>
     </section>
   );

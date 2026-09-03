@@ -5,8 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const navLinks = [
   { label: 'Portfolio', href: '#portfolio' },
   { label: 'Services', href: '#services' },
-  { label: 'Pricing', href: '#pricing' },
-  { label: 'FAQ', href: '#faq' },
+  { label: 'Reviews', href: '#testimonials' },
 ];
 
 export default function Navbar() {
@@ -30,7 +29,7 @@ export default function Navbar() {
     <motion.header
       animate={{ y: hidden && !menuOpen ? -100 : 0 }}
       transition={{ duration: 0.4, ease: 'easeInOut' }}
-      className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4 font-jost"
+      className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4 font-poppins"
     >
       <motion.nav
         initial={{ opacity: 0, y: -20 }}
@@ -38,18 +37,16 @@ export default function Navbar() {
         transition={{ delay: 0.2, duration: 0.6 }}
         className={`w-full max-w-5xl rounded-2xl transition-all duration-500 ${
           scrolled
-            ? 'bg-cream/85 backdrop-blur-xl border border-mocha/8 shadow-warm-md'
+            ? 'bg-white/80 backdrop-blur-xl border border-rose-lt/40 shadow-pink-md'
             : 'bg-transparent'
         }`}
       >
         <div className="flex items-center justify-between px-6 py-2.5">
           {/* Logo */}
-          <a href="#hero" className="flex items-center gap-2.5 group">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gold to-gold-dk flex items-center justify-center text-white font-cormorant font-semibold text-sm group-hover:scale-110 transition-transform select-none">
-              H
-            </div>
-            <span className="font-cormorant text-mocha font-semibold text-xl tracking-wider">
-              Hadiva <span className="text-gold-dk">Studio</span>
+          <a href="#hero" className="flex items-center gap-2 group">
+            <span className="text-2xl group-hover:scale-110 transition-transform select-none">🎀</span>
+            <span className="font-playfair text-charcoal font-semibold text-xl tracking-wide">
+              Hadiva <span className="text-rose">Studio</span>
             </span>
           </a>
 
@@ -59,10 +56,10 @@ export default function Navbar() {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm text-taupe hover:text-mocha transition-colors duration-200 tracking-wide font-light relative group"
+                className="text-sm text-gray hover:text-charcoal transition-colors duration-200 tracking-wide font-light relative group"
               >
                 {link.label}
-                <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-gold group-hover:w-full transition-all duration-300" />
+                <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-rose group-hover:w-full transition-all duration-300" />
               </a>
             ))}
           </div>
@@ -70,10 +67,11 @@ export default function Navbar() {
           {/* CTA */}
           <div className="hidden md:flex items-center gap-4">
             <a
-              href="#contact"
-              className="px-5 py-1.5 rounded-full border border-gold/60 text-gold-dk text-xs tracking-wider uppercase font-medium hover:bg-gold hover:text-white transition-all duration-300"
+              href="https://instagram.com/hadivastudio"
+              target="_blank" rel="noopener noreferrer"
+              className="px-5 py-2 rounded-full bg-gradient-to-r from-rose to-hot-pink text-white text-xs tracking-wider uppercase font-medium hover:shadow-pink-md hover:scale-105 transition-all duration-300"
             >
-              Start Project
+              DM on Instagram
             </a>
           </div>
 
@@ -81,12 +79,12 @@ export default function Navbar() {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="flex flex-col gap-1.5 p-2 text-mocha focus:outline-none"
+              className="flex flex-col gap-1.5 p-2 text-charcoal focus:outline-none"
               aria-label="Toggle menu"
             >
-              <span className={`block w-5 h-0.5 bg-mocha rounded transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-              <span className={`block w-5 h-0.5 bg-mocha rounded transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
-              <span className={`block w-5 h-0.5 bg-mocha rounded transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+              <span className={`block w-5 h-0.5 bg-charcoal rounded transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+              <span className={`block w-5 h-0.5 bg-charcoal rounded transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
+              <span className={`block w-5 h-0.5 bg-charcoal rounded transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
             </button>
           </div>
         </div>
@@ -99,19 +97,19 @@ export default function Navbar() {
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden overflow-hidden border-t border-mocha/8 px-6 pb-5 bg-cream/95 rounded-b-2xl font-jost"
+              className="md:hidden overflow-hidden border-t border-rose-lt/30 px-6 pb-5 bg-white/90 backdrop-blur-xl rounded-b-2xl"
             >
               <div className="flex flex-col gap-4 pt-4">
                 {navLinks.map(link => (
                   <a key={link.label} href={link.href} onClick={() => setMenuOpen(false)}
-                    className="text-taupe hover:text-mocha transition-colors text-sm tracking-wide">
+                    className="text-gray hover:text-charcoal transition-colors text-sm tracking-wide">
                     {link.label}
                   </a>
                 ))}
 
-                <a href="#contact" onClick={() => setMenuOpen(false)}
-                  className="mt-2 px-5 py-2.5 rounded-full bg-mocha text-white text-sm font-medium text-center tracking-wide">
-                  Start Project
+                <a href="https://instagram.com/hadivastudio" target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)}
+                  className="mt-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-rose to-hot-pink text-white text-sm font-medium text-center tracking-wide">
+                  DM on Instagram 📩
                 </a>
               </div>
             </motion.div>

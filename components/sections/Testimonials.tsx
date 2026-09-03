@@ -3,10 +3,10 @@ import { useState, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 
 const testimonials = [
-  { name: 'Ayesha M.', location: 'Lahore, Pakistan', stars: 5, quote: "We commissioned Hadiva Studio to create a website for our custom cake bakery. The experience was seamless. The layout is as premium as our pastries, and our custom orders have doubled since going live!", event: 'Bakery Brand Site', avatar: '🥐' },
-  { name: 'Amara S.', location: 'Jakarta, Indonesia', stars: 5, quote: "Hadiva Studio completely transformed our wedding invitation into a digital masterpiece. Our guests couldn't stop praising the elegant botanical layout, background music, and smooth RSVP timeline.", event: 'Wedding Microsite', avatar: '👰' },
-  { name: 'Daniel K.', location: 'Singapore', stars: 5, quote: "The QR Menu website created for our cafe is absolute perfection. It's incredibly fast, beautifully animated, and matches our physical branding flawlessly. Our customers absolutely love the interface!", event: 'Restaurant QR Menu', avatar: '☕' },
-  { name: 'Zainab R.', location: 'Dubai, UAE', stars: 5, quote: "My graduation portfolio website is beautiful! The QR-enabled access makes sharing my design work with recruiters during networking events instant, professional, and memorable.", event: 'Creative Portfolio', avatar: '🎓' },
+  { name: 'Ayesha K.', location: 'Lahore', stars: 5, quote: 'The wedding hamper was absolutely stunning! My dulhan loved every detail. The rose gold packaging was Pinterest-perfect and all my guests were asking where I got it from!', event: 'Wedding Hamper', avatar: '👰' },
+  { name: 'Fatima R.', location: 'Karachi', stars: 5, quote: 'I ordered a birthday surprise box for my best friend and she literally cried happy tears! The attention to detail and the aesthetic packaging was beyond beautiful.', event: 'Birthday Box', avatar: '🎂' },
+  { name: 'Zainab A.', location: 'Islamabad', stars: 5, quote: 'Hadiva Studio did our corporate welcome kits for 50 employees and every single person was impressed. Professional, elegant, and delivered right on time!', event: 'Corporate Kit', avatar: '💼' },
+  { name: 'Maryam S.', location: 'Lahore', stars: 5, quote: 'The Eid hamper set was gorgeous! Beautiful pastel packaging with custom ribbons. My family was so impressed. Already planning my next order for Ramadan!', event: 'Eid Hamper', avatar: '🌙' },
 ];
 
 export default function Testimonials() {
@@ -17,20 +17,20 @@ export default function Testimonials() {
   const prev = useCallback(() => setCurrent(c => (c - 1 + testimonials.length) % testimonials.length), []);
 
   return (
-    <section id="testimonials" className="py-24 bg-ivory relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,169,110,0.06)_0%,transparent_70%)] pointer-events-none" />
+    <section id="testimonials" className="py-24 bg-blush relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,143,171,0.06)_0%,transparent_70%)] pointer-events-none" />
 
       <div className="relative z-10 max-w-5xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-14">
           <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <div className="flex items-center justify-center gap-3 mb-2">
-              <div className="h-px w-6 bg-gold/50" />
-              <span className="text-gold-dk text-[10px] tracking-[0.35em] uppercase font-jost font-light">kind words</span>
-              <div className="h-px w-6 bg-gold/50" />
+              <div className="h-px w-6 bg-rose/40" />
+              <span className="text-rose text-[10px] tracking-[0.35em] uppercase font-light">kind words</span>
+              <div className="h-px w-6 bg-rose/40" />
             </div>
-            <h2 className="font-cormorant text-mocha text-3xl sm:text-5xl font-light uppercase tracking-wider">
-              Client <span className="text-gold-dk italic font-normal normal-case">Testimonials</span>
+            <h2 className="font-playfair text-charcoal text-3xl sm:text-5xl font-semibold">
+              Happy <span className="pink-text-gradient">Customers</span> 💕
             </h2>
           </motion.div>
         </div>
@@ -56,16 +56,16 @@ export default function Testimonials() {
             <div className="text-5xl mb-5 select-none">{testimonials[current].avatar}</div>
             <div className="flex justify-center gap-1 mb-4 select-none">
               {Array.from({ length: testimonials[current].stars }).map((_, i) => (
-                <span key={i} className="text-gold text-lg">★</span>
+                <span key={i} className="text-rose text-lg">★</span>
               ))}
             </div>
-            <blockquote className="font-cormorant text-lg sm:text-2xl text-mocha/90 italic leading-relaxed mb-6 px-4">
+            <blockquote className="font-playfair text-lg sm:text-2xl text-charcoal/90 italic leading-relaxed mb-6 px-4">
               &ldquo;{testimonials[current].quote}&rdquo;
             </blockquote>
-            <div className="font-jost">
-              <p className="text-mocha font-semibold text-sm tracking-wider uppercase">{testimonials[current].name}</p>
-              <p className="text-taupe text-xs mt-0.5">{testimonials[current].location}</p>
-              <span className="inline-block mt-3 text-[9px] tracking-widest uppercase px-3.5 py-1 rounded-full border border-gold/30 text-gold-dk font-medium bg-cream">
+            <div>
+              <p className="text-charcoal font-semibold text-sm tracking-wider uppercase">{testimonials[current].name}</p>
+              <p className="text-gray text-xs mt-0.5">{testimonials[current].location}</p>
+              <span className="inline-block mt-3 text-[9px] tracking-widest uppercase px-3.5 py-1 rounded-full border border-rose/30 text-rose-dk font-medium bg-white">
                 {testimonials[current].event}
               </span>
             </div>
@@ -74,27 +74,27 @@ export default function Testimonials() {
 
         {/* Navigation */}
         <div className="flex items-center justify-center gap-5 mt-10">
-          <button 
+          <button
             type="button"
             onClick={prev}
-            className="w-10 h-10 rounded-full border border-mocha/10 flex items-center justify-center text-taupe hover:border-gold/40 hover:text-gold-dk transition-all"
+            className="w-10 h-10 rounded-full border border-rose-lt/40 flex items-center justify-center text-gray hover:border-rose/60 hover:text-rose transition-all"
           >
             ←
           </button>
           <div className="flex gap-2">
             {testimonials.map((_, i) => (
-              <button 
-                key={i} 
+              <button
+                key={i}
                 type="button"
                 onClick={() => setCurrent(i)}
-                className={`rounded-full transition-all duration-300 ${i === current ? 'w-6 h-2 bg-gold' : 'w-2 h-2 bg-mocha/15 hover:bg-mocha/30'}`} 
+                className={`rounded-full transition-all duration-300 ${i === current ? 'w-6 h-2 bg-gradient-to-r from-rose to-hot-pink' : 'w-2 h-2 bg-rose-lt/30 hover:bg-rose-lt/50'}`}
               />
             ))}
           </div>
-          <button 
+          <button
             type="button"
             onClick={next}
-            className="w-10 h-10 rounded-full border border-mocha/10 flex items-center justify-center text-taupe hover:border-gold/40 hover:text-gold-dk transition-all"
+            className="w-10 h-10 rounded-full border border-rose-lt/40 flex items-center justify-center text-gray hover:border-rose/60 hover:text-rose transition-all"
           >
             →
           </button>
