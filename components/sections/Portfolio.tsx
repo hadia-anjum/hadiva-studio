@@ -19,7 +19,7 @@ interface PortfolioItem {
   };
 }
 
-const categories = ['All', 'Custom Packaging', 'Boxes', 'Cosmetics & Skincare', 'Wedding', 'Corporate'];
+const categories = ['All', 'Custom Packaging', 'Cosmetics & Skincare', 'Boxes', 'Wedding', 'Corporate'];
 
 const items: PortfolioItem[] = [
   {
@@ -58,9 +58,26 @@ const items: PortfolioItem[] = [
   },
   {
     id: 3,
+    title: 'Nail Art Display Card',
+    category: 'Cosmetics & Skincare',
+    code: 'ARTICLE Nº 03',
+    image: '/items/nail-art-display-card.jpg',
+    featured: true,
+    shortDesc: 'Custom-printed aesthetic nail art display card with elegant ribbon bow header & textured finish.',
+    details: {
+      instructions: [
+        'Take a screenshot of this item.',
+        'Send the screenshot directly to our Instagram DM (@hadivastudio).',
+      ],
+      sizeTip: 'Kindly specify your required display card size and dimensions.',
+      customizationTip: 'For custom branding or text printing, share your logo vector file, brand text, or reference picture with us.',
+    },
+  },
+  {
+    id: 4,
     title: 'Rose Quartz Gift Box',
     category: 'Boxes',
-    code: 'ARTICLE Nº 03',
+    code: 'ARTICLE Nº 04',
     color: 'from-rose-lt/40 via-blush to-blush-2',
     shortDesc: 'Handcrafted luxury rigid gift box in soft blush tones.',
     details: {
@@ -73,10 +90,10 @@ const items: PortfolioItem[] = [
     },
   },
   {
-    id: 4,
+    id: 5,
     title: 'Bridal Nikkah Hamper',
     category: 'Wedding',
-    code: 'ARTICLE Nº 04',
+    code: 'ARTICLE Nº 05',
     color: 'from-lavender/40 via-blush to-rose-lt/30',
     shortDesc: 'Bespoke trousseau hamper box for bridal & nikkah gifts.',
     details: {
@@ -89,10 +106,10 @@ const items: PortfolioItem[] = [
     },
   },
   {
-    id: 5,
+    id: 6,
     title: 'Monogram Executive Suite',
     category: 'Corporate',
-    code: 'ARTICLE Nº 05',
+    code: 'ARTICLE Nº 06',
     color: 'from-blush-2 via-cream to-rose-lt/20',
     shortDesc: 'Premium corporate welcome & client appreciation box set.',
     details: {
@@ -104,27 +121,12 @@ const items: PortfolioItem[] = [
       customizationTip: 'Share your corporate logo file and branding guidelines.',
     },
   },
-  {
-    id: 6,
-    title: 'Silk Ribboned Gift Box',
-    category: 'Boxes',
-    code: 'ARTICLE Nº 06',
-    color: 'from-peach/40 via-blush to-rose-lt/40',
-    shortDesc: 'Chic gift packaging box with custom printed satin ribbon.',
-    details: {
-      instructions: [
-        'Take a screenshot of this item.',
-        'Send the screenshot directly to our Instagram DM (@hadivastudio).',
-      ],
-      sizeTip: 'Kindly specify your required box dimensions.',
-      customizationTip: 'Share your ribbon text, logo, or design reference picture.',
-    },
-  },
 ];
 
 export default function Portfolio() {
   const [active, setActive] = useState('All');
   const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
+  const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
 
   const filtered = active === 'All' ? items : items.filter(i => i.category === active);
 
@@ -143,7 +145,7 @@ export default function Portfolio() {
               Featured <span className="font-normal not-italic pink-text-gradient uppercase tracking-[0.1em]">Articles</span>
             </h2>
             <p className="text-gray text-xs sm:text-sm mt-3 max-w-md mx-auto font-light leading-relaxed">
-              Click on any item to view details, size guidelines, and ordering instructions.
+              Click on any picture or card to preview full details, dimensions, and ordering guidelines.
             </p>
           </motion.div>
         </div>
@@ -179,9 +181,9 @@ export default function Portfolio() {
                 onClick={() => setSelectedItem(item)}
                 className="group relative rounded-3xl overflow-hidden border border-rose-lt/30 bg-blush flex flex-col justify-between hover:shadow-pink-md hover:border-rose-dk/40 transition-all duration-500 cursor-pointer"
               >
-                {/* Image or Gradient */}
+                {/* Clickable Image Box */}
                 {item.image ? (
-                  <div className="relative w-full h-80 overflow-hidden bg-white/50">
+                  <div className="relative w-full h-80 overflow-hidden bg-white/50 cursor-pointer">
                     <Image
                       src={item.image}
                       alt={item.title}
@@ -189,6 +191,12 @@ export default function Portfolio() {
                       className="object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-black/10 opacity-40 group-hover:opacity-60 transition-opacity" />
+                    
+                    {/* Hover Clickable Zoom Badge */}
+                    <div className="absolute top-3 right-3 bg-charcoal/70 backdrop-blur-sm text-blush text-[9px] tracking-[0.2em] uppercase px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1.5">
+                      <span>Expand Picture</span>
+                      <span>🔍</span>
+                    </div>
                   </div>
                 ) : (
                   <div className="relative w-full h-64 overflow-hidden">
@@ -243,7 +251,7 @@ export default function Portfolio() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedItem(null)}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-charcoal/60 backdrop-blur-md overflow-y-auto"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-charcoal/70 backdrop-blur-md overflow-y-auto"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -257,20 +265,28 @@ export default function Portfolio() {
               <button
                 onClick={() => setSelectedItem(null)}
                 aria-label="Close modal"
-                className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-charcoal/70 hover:bg-charcoal text-blush flex items-center justify-center text-sm transition-all"
+                className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-charcoal/80 hover:bg-charcoal text-blush flex items-center justify-center text-sm transition-all shadow-md"
               >
                 ✕
               </button>
 
-              {/* Image if available */}
+              {/* Clickable Image inside Modal */}
               {selectedItem.image && (
-                <div className="relative w-full h-72 sm:h-96 bg-white">
+                <div
+                  onClick={() => setFullscreenImage(selectedItem.image || null)}
+                  className="relative w-full h-80 sm:h-96 bg-white cursor-pointer group"
+                >
                   <Image
                     src={selectedItem.image}
                     alt={selectedItem.title}
                     fill
-                    className="object-cover"
+                    className="object-cover group-hover:scale-102 transition-transform duration-500"
                   />
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                    <span className="px-4 py-2 rounded-full bg-charcoal/75 text-blush text-[10px] tracking-[0.2em] uppercase font-medium backdrop-blur-sm opacity-90 group-hover:opacity-100 transition-opacity">
+                      Click to view full picture 🔍
+                    </span>
+                  </div>
                 </div>
               )}
 
@@ -292,7 +308,7 @@ export default function Portfolio() {
                 {/* Instructions & Specs Box */}
                 <div className="p-6 rounded-2xl bg-blush border border-rose-lt/30 space-y-4 mb-8">
                   <h4 className="font-cormorant text-charcoal text-xl font-medium tracking-wide uppercase">
-                    How To Order &amp; Customization
+                    How To Order &amp; Customization Details
                   </h4>
 
                   <div className="space-y-2 text-xs text-gray font-light">
@@ -335,6 +351,35 @@ export default function Portfolio() {
                 </div>
               </div>
             </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* FULLSCREEN LIGHTBOX VIEW */}
+      <AnimatePresence>
+        {fullscreenImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setFullscreenImage(null)}
+            className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-lg flex items-center justify-center p-4 cursor-zoom-out"
+          >
+            <button
+              onClick={() => setFullscreenImage(null)}
+              aria-label="Close full picture"
+              className="absolute top-6 right-6 text-white text-2xl font-light w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 flex items-center justify-center transition-all z-10"
+            >
+              ✕
+            </button>
+            <div className="relative w-full max-w-4xl h-[85vh]">
+              <Image
+                src={fullscreenImage}
+                alt="Full preview"
+                fill
+                className="object-contain"
+              />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
