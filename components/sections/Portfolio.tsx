@@ -124,6 +124,57 @@ const items: PortfolioItem[] = [
       customizationTip: 'For custom branding, share your logo, artwork files, color theme, or reference picture with us.',
     },
   },
+  {
+    id: 7,
+    title: 'Cup Holder',
+    category: 'Custom Packaging',
+    code: 'ARTICLE Nº 07',
+    image: '/items/cup-holder.jpg',
+    featured: true,
+    shortDesc: 'Custom-printed takeaway drink & coffee cup holder for cafes, events & brand packaging.',
+    details: {
+      instructions: [
+        'Take a screenshot of this item.',
+        'Send the screenshot directly to our Instagram DM (@hadivastudio).',
+      ],
+      sizeTip: 'Kindly specify your required cup holder size & cup capacity (e.g. 2-cup or 4-cup holder).',
+      customizationTip: 'For custom branding or printing, share your cafe/brand logo vector file or reference picture with us.',
+    },
+  },
+  {
+    id: 8,
+    title: 'Menu Card',
+    category: 'Custom Packaging',
+    code: 'ARTICLE Nº 08',
+    image: '/items/menu-card.jpg',
+    featured: true,
+    shortDesc: 'Aesthetic custom-designed dinner & cocktail menu card with bow accents & die-cut shapes.',
+    details: {
+      instructions: [
+        'Take a screenshot of this item.',
+        'Send the screenshot directly to our Instagram DM (@hadivastudio).',
+      ],
+      sizeTip: 'Kindly specify your required menu card size and dimensions (e.g. 4×8 inches, A5).',
+      customizationTip: 'For custom branding or text printing, share your menu text, logo, color palette, or reference picture with us.',
+    },
+  },
+  {
+    id: 9,
+    title: 'Big Boxes',
+    category: 'Boxes',
+    code: 'ARTICLE Nº 09',
+    image: '/items/big-boxes.jpg',
+    featured: true,
+    shortDesc: 'Luxury rigid magnetic gift box available in every color & standard 12×10 inches size.',
+    details: {
+      instructions: [
+        'Take a screenshot of this item.',
+        'Send the screenshot directly to our Instagram DM (@hadivastudio).',
+      ],
+      sizeTip: 'Standard size is 12×10 inches (or specify your required custom dimensions).',
+      customizationTip: 'Available in every color! Share your preferred color, logo printing, or reference picture with us.',
+    },
+  },
 ];
 
 export default function Portfolio() {
