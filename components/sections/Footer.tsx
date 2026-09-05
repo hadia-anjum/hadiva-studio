@@ -25,7 +25,7 @@ export default function Footer() {
 
           {/* Links */}
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-xs text-gray font-light uppercase tracking-[0.25em]">
-            {[['#portfolio', 'Portfolio'], ['#services', 'Services'], ['#testimonials', 'Reviews']].map(([href, label]) => (
+            {[['#portfolio', 'Portfolio'], ['#process', 'Process'], ['#testimonials', 'Reviews']].map(([href, label]) => (
               <a key={label} href={href} className="hover:text-rose-dk transition-colors">{label}</a>
             ))}
           </div>
