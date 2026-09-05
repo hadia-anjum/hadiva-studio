@@ -19,7 +19,7 @@ interface PortfolioItem {
   };
 }
 
-const categories = ['All', 'Custom Packaging', 'Cosmetics & Skincare', 'Boxes', 'Wedding', 'Corporate'];
+const categories = ['All', 'Custom Packaging', 'Cosmetics & Skincare', 'Boxes', 'Birthday', 'Corporate'];
 
 const items: PortfolioItem[] = [
   {
@@ -75,50 +75,53 @@ const items: PortfolioItem[] = [
   },
   {
     id: 4,
-    title: 'Rose Quartz Gift Box',
-    category: 'Boxes',
+    title: 'Birthday Card',
+    category: 'Birthday',
     code: 'ARTICLE Nº 04',
-    color: 'from-rose-lt/40 via-blush to-blush-2',
-    shortDesc: 'Handcrafted luxury rigid gift box in soft blush tones.',
+    image: '/items/birthday-card.jpg',
+    featured: true,
+    shortDesc: 'Aesthetic custom-designed birthday greeting card with scallop border & disco ball artwork.',
     details: {
       instructions: [
         'Take a screenshot of this item.',
         'Send the screenshot directly to our Instagram DM (@hadivastudio).',
       ],
-      sizeTip: 'Kindly specify your required box size (Length × Width × Height).',
-      customizationTip: 'For custom branding or personalized ribbons, share your logo or reference design.',
+      sizeTip: 'Kindly specify your required card size and dimensions (e.g. 5x7 inches, A5).',
+      customizationTip: 'Share your custom birthday name, age/milestone number, color theme, or reference picture with us.',
     },
   },
   {
     id: 5,
-    title: 'Bridal Nikkah Hamper',
-    category: 'Wedding',
+    title: 'Butterfly Die-Cut Business Card',
+    category: 'Corporate',
     code: 'ARTICLE Nº 05',
-    color: 'from-lavender/40 via-blush to-rose-lt/30',
-    shortDesc: 'Bespoke trousseau hamper box for bridal & nikkah gifts.',
+    image: '/items/butterfly-business-card.jpg',
+    featured: true,
+    shortDesc: 'Custom purple butterfly die-cut business card with QR code integration & social handles.',
     details: {
       instructions: [
         'Take a screenshot of this item.',
         'Send the screenshot directly to our Instagram DM (@hadivastudio).',
       ],
-      sizeTip: 'Kindly specify your required hamper dimensions.',
-      customizationTip: 'Share your color theme, monogram, or reference picture for custom styling.',
+      sizeTip: 'Kindly specify your required card dimensions and die-cut shape preferences.',
+      customizationTip: 'Share your business logo, social media handles, QR code link, or custom reference design.',
     },
   },
   {
     id: 6,
-    title: 'Monogram Executive Suite',
-    category: 'Corporate',
+    title: 'Rigid Mailer Boxes',
+    category: 'Boxes',
     code: 'ARTICLE Nº 06',
-    color: 'from-blush-2 via-cream to-rose-lt/20',
-    shortDesc: 'Premium corporate welcome & client appreciation box set.',
+    image: '/items/rigid-mailer-box.jpg',
+    featured: true,
+    shortDesc: 'Custom-printed aesthetic pink rigid mailer box for shipping, e-commerce & brand packaging.',
     details: {
       instructions: [
         'Take a screenshot of this item.',
         'Send the screenshot directly to our Instagram DM (@hadivastudio).',
       ],
-      sizeTip: 'Kindly specify your required box size & quantity.',
-      customizationTip: 'Share your corporate logo file and branding guidelines.',
+      sizeTip: 'Kindly specify your required mailer box dimensions (Length × Width × Height).',
+      customizationTip: 'For custom branding, share your logo, artwork files, color theme, or reference picture with us.',
     },
   },
 ];
