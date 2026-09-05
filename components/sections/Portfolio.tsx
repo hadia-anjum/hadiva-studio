@@ -175,6 +175,57 @@ const items: PortfolioItem[] = [
       customizationTip: 'Available in every color! Share your preferred color, logo printing, or reference picture with us.',
     },
   },
+  {
+    id: 10,
+    title: 'Thank You Cards',
+    category: 'Custom Packaging',
+    code: 'ARTICLE Nº 10',
+    image: '/items/thank-you-cards.jpg',
+    featured: true,
+    shortDesc: 'Aesthetic custom-printed thank you & order appreciation cards for small businesses.',
+    details: {
+      instructions: [
+        'Take a screenshot of this item.',
+        'Send the screenshot directly to our Instagram DM (@hadivastudio).',
+      ],
+      sizeTip: 'Kindly specify your required card size and dimensions (e.g. 4×6 inches, A6).',
+      customizationTip: 'Share your business logo, social media handles, discount code, or design reference picture with us.',
+    },
+  },
+  {
+    id: 11,
+    title: 'For Jewelry Brands',
+    category: 'Cosmetics & Skincare',
+    code: 'ARTICLE Nº 11',
+    image: '/items/for-jewelry-brands.jpg',
+    featured: true,
+    shortDesc: 'Custom aesthetic display cards & packaging for jewelry brands, necklaces, earrings & accessories.',
+    details: {
+      instructions: [
+        'Take a screenshot of this item.',
+        'Send the screenshot directly to our Instagram DM (@hadivastudio).',
+      ],
+      sizeTip: 'Kindly specify your required display card size and slot placement (for necklaces, earrings, rings).',
+      customizationTip: 'Share your brand logo, custom illustration/artwork preferences, or design reference picture with us.',
+    },
+  },
+  {
+    id: 12,
+    title: 'Bouquet Wrapping Paper',
+    category: 'Custom Packaging',
+    code: 'ARTICLE Nº 12',
+    image: '/items/bouquet-wrapping-paper.jpg',
+    featured: true,
+    shortDesc: 'Aesthetic vintage script floral bouquet wrapping paper with luxury ribbon finishing.',
+    details: {
+      instructions: [
+        'Take a screenshot of this item.',
+        'Send the screenshot directly to our Instagram DM (@hadivastudio).',
+      ],
+      sizeTip: 'Kindly specify your required sheet dimensions or roll size.',
+      customizationTip: 'Share your preferred print pattern, typography style, or reference picture with us.',
+    },
+  },
 ];
 
 export default function Portfolio() {
